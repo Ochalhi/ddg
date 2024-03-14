@@ -1,15 +1,3 @@
-<template>
-  <div>
-    <button v-bind:class="selected(1)" v-on:click="select(1,2)">
-      User 1
-    </button>
-    <div id="seperator"></div>
-    <button v-bind:class="selected(2)" v-on:click="select(2,1)">
-      User 2
-    </button>
-  </div>
-</template>
-
 <script>
 import {store} from "@/App.vue";
 
@@ -31,11 +19,21 @@ export default {
 }
 </script>
 
+<template>
+  <div>
+    <button v-bind:class="selected(1)" v-on:click="select(1,2)">
+      User 1
+    </button>
+    <div id="seperator"></div>
+    <button v-bind:class="selected(2)" v-on:click="select(2,1)">
+      User 2
+    </button>
+  </div>
+</template>
+
 <style scoped>
 .selected {
   background: rgb(0, 92, 255);
-
-
 }
 
 div {

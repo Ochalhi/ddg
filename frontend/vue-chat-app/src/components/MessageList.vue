@@ -1,12 +1,3 @@
-<template>
-  <div id="list">
-    <MessageBox v-for="message in getMessages()"
-                :key="message.id"
-                :sender_id="message.sender_id"
-                :content="message.content"
-                :timestamp="message.timestamp"/>
-  </div>
-</template>
 
 <script>
 import MessageBox from "@/components/MessageBox.vue";
@@ -28,9 +19,17 @@ export default {
     }
   }
 }
-
-
 </script>
+
+<template>
+  <div id="list">
+    <MessageBox v-for="message in getMessages()"
+                :key="message.id"
+                :sender_id="message.sender_id"
+                :content="message.content"
+                :timestamp="message.timestamp"/>
+  </div>
+</template>
 
 <style scoped>
 #list{

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {store, SERVER_URL} from "@/App.vue";
+import {store, BACKEND_URL} from "@/App.vue";
 import axios from "axios";
 
 export default {
@@ -27,7 +27,7 @@ export default {
         return
       }
 
-      axios.post(SERVER_URL+ "/message", {
+      axios.post(BACKEND_URL + "/message", {
         "receiver_id": store.receiver_id,
         "sender_id": store.sender_id,
         "content": store.currentContent
@@ -48,8 +48,7 @@ div {
   display: grid;
   grid-template-columns: 10fr 2fr;
   background: color(srgb 0.0612 0.1472 0.3502);
-  padding: 10px;
-  padding-top: 0;;
+  padding: 0 10px 10px;;
 }
 
 input {

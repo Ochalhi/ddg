@@ -1,11 +1,3 @@
-<template>
-  <div id="chatbox">
-    <MessageList/>
-    <SelectUserBox/>
-    <SendMessageBox/>
-  </div>
-</template>
-
 <script>
 import SendMessageBox from "@/components/SendMessageBox.vue";
 import SelectUserBox from "@/components/SelectUserBox.vue";
@@ -17,6 +9,13 @@ export default {
 }
 
 </script>
+<template>
+  <div id="chatbox">
+    <MessageList/>
+    <SelectUserBox/>
+    <SendMessageBox/>
+  </div>
+</template>
 
 <style scoped>
 #chatbox {
@@ -26,6 +25,5 @@ export default {
   grid-template-rows: 1fr auto auto;
   padding: 50px;
   overflow: auto;
-
 }
 </style>

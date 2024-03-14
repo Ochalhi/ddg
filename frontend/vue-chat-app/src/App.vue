@@ -1,26 +1,12 @@
-<template>
-  <ChatBox/>
-</template>
-
 <script>
 import ChatBox from './components/ChatBox.vue'
 import {reactive} from 'vue';
 import axios from "axios";
 import {io} from "socket.io-client";
-export const SERVER_URL = process.env.NODE_ENV === "production" ? undefined : "http://localhost:8000";
 
-export const socket = io(SERVER_URL);
-
-socket.on("connect", () => {
-  console.log("connected");
-});
-
-socket.on("disconnect", () => {
-  console.log("disconnected");
-});
-
+export const BACKEND_URL = process.env.VUE_APP_BACKEND_URL;
+export const socket = io(BACKEND_URL);
 socket.on("new-message", (message) => {
-  console.log("new message bro")
   store.messages.push(message);
 });
 
@@ -34,27 +20,28 @@ export default {
 export const store = reactive({
   sender_id: 1,
   receiver_id: 2,
-  currentContent: '',
+  currentContent: "",
   messages: [],
   loadMessages() {
-    axios.get(SERVER_URL+"/message",
-        {
-          params: {
-            "receiver_id": store.receiver_id,
-            "sender_id": store.sender_id,
-          }
-        }).then(res => {
+    axios.get(BACKEND_URL + "/message", {
+      params: {
+        "receiver_id": store.receiver_id,
+        "sender_id": store.sender_id,
+      }
+    }).then(res => {
       if (res.status === 200) {
-        console.log(res.data)
         store.messages = res.data.sort((a, b) => a.id - b.id)
       }
-    }).catch(res => {
-      console.log("Error retrieving data:" + res)
+    }).catch(err => {
+      console.log("Error retrieving data: " + err)
     })
   },
 })
-
 </script>
+
+<template>
+  <ChatBox/>
+</template>
 
 <style>
 #app {
@@ -77,7 +64,8 @@ body {
   display: grid;
   font-size: 14px;
 }
-button:hover{
+
+button:hover {
   cursor: pointer;
 }
 </style>
