@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  frontend:
+    build: frontend
+    image: chat-frontend:v1
+    depends_on:
+      - backend
+    ports:
+      - '8080:8080'
+  backend:
+    build: backend
+    image: chat-backend:v1
+    depends_on:
+      - db
+    ports:
+      - '8000:8000'
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
